@@ -6,14 +6,12 @@ from cache import get_cached_data
 app = Dash(__name__, assets_folder='assets')
 app.title = "California Water Reservoir Dashboard"
 
-# Function to get the latest date from the cached data
 def get_latest_date(data):
     if not data:
         return None
     df = pd.DataFrame(data)
     return df['Date'].max() if not df.empty else None
 
-# Layout of the Dash app
 app.layout = html.Div(
     children=[
         html.H1("California Reservoir Water Levels"),
@@ -66,7 +64,6 @@ def update_chart(selected_date):
     if filtered_df.empty:
         return html.Div("No data available", style={'textAlign': 'center', 'color': '#888'})
 
-    # Create a single grouped bar chart
     fig = go.Figure()
 
     reservoirs = ["Oroville", "Shasta", "Sonoma"]
